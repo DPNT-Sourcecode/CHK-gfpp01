@@ -4,4 +4,3 @@ class Hello
     return "Hello, World!"
   end
 end
-
