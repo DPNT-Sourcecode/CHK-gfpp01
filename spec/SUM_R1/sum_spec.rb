@@ -1,4 +1,4 @@
-require '../spec_helper'
+require_solution 'SUM'
 
 describe Sum do
     it "add the two numbers" do
