@@ -46,46 +46,48 @@ class Checkout
   def calculate_total_price
     @total_price = 0
     item_count.each do |sku, count|
-      apply_special_offers(sku, price_table[sku][:offer], count) if price_table[sku].key?(:offer)
+      @count = count
+      apply_special_offers(sku, price_table[sku][:offer]) if price_table[sku].key?(:offer)
       binding.pry
-      @total_price += count * price_table[sku][:price]
+      @total_price += @count * price_table[sku][:price]
     end
     @total_price
   end
 
-  def apply_special_offers(sku, offer, count)
+  def apply_special_offers(sku, offer)
     if offer.is_a?(Array)
       offer.sort_by { |o| o[:quantity] }.reverse_each do |o|
-        apply_special_offer(sku, o, count)
+        apply_special_offer(sku, o)
       end
     elsif offer.is_a?(Hash)
-      apply_special_offer(sku, offer, count)
+      apply_special_offer(sku, offer)
     end
   end
 
-  def apply_special_offer(sku, offer, count)
+  def apply_special_offer(sku, offer)
     if offer.key?(:offer_price)
-      apply_special_offer_price(offer, count)
+      apply_special_offer_price(offer)
     elsif offer.key?(:free_sku)
-      apply_free_sku_offer(sku, offer, count)
+      apply_free_sku_offer(sku, offer)
     end
   end
 
-  def apply_special_offer_price(offer, count)
-    while count >= offer[:quantity]
+  def apply_special_offer_price(offer)
+    while @count >= offer[:quantity]
       @total_price += offer[:offer_price]
-      count -= offer[:quantity]
+      @count -= offer[:quantity]
     end
   end
 
-  def apply_free_sku_offer(sku, offer, count)
-    while count >= offer[:quantity]
+  def apply_free_sku_offer(sku, offer)
+    while @count >= offer[:quantity]
       @total_price += price_table[sku][:price] * offer[:quantity]
-      count -= offer[:quantity]
+      @count -= offer[:quantity]
       item_count[offer[:free_sku]] -= 1
     end
   end
 end
+
 
 
 
