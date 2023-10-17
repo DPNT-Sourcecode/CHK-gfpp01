@@ -16,7 +16,7 @@ describe Checkout do
     let(:skus) { "AAA" }
     let(:total_price) { 130 }
 
-    it "calculates the total price" do
+    fit "calculates the total price" do
       expect(checkout).to eq(total_price)
     end
   end
@@ -84,4 +84,5 @@ describe Checkout do
     end
   end
 end
+
 

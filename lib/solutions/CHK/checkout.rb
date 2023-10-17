@@ -47,6 +47,7 @@ class Checkout
     @total_price = 0
     item_count.each do |sku, count|
       apply_special_offers(sku, price_table[sku][:offer], count) if price_table[sku].key?(:offer)
+      binding.pry
       @total_price += count * price_table[sku][:price]
     end
     @total_price
@@ -81,10 +82,11 @@ class Checkout
     while count >= offer[:quantity]
       @total_price += price_table[sku][:price] * offer[:quantity]
       count -= offer[:quantity]
-      item_count[offer[:free_sku]] += 1
+      item_count[offer[:free_sku]] -= 1
     end
   end
 end
+
 
 
 
