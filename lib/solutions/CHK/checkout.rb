@@ -82,7 +82,8 @@ class Checkout
     while @count >= offer[:quantity]
       @total_price += price_table[sku][:price] * offer[:quantity]
       @count -= offer[:quantity]
-      item_count[offer[:free_sku]] -= 1 if item_count[offer[:free_sku]]
+      item_count[offer[:free_sku]] -= 1
     end
   end
 end
+
