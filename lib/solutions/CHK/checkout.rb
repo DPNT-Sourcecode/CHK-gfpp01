@@ -46,16 +46,16 @@ class Checkout
   def calculate_total_price
     @total_price = 0
     item_count.each do |sku, count|
-      apply_special_offers(price_table[sku][:offer], count) if price_table[sku].key?(:offer)
+      apply_special_offers(sku, price_table[sku][:offer], count) if price_table[sku].key?(:offer)
       total_price += count * price_table[sku][:price]
     end
     total_price
   end
 
-  def apply_special_offers(offer, count)
+  def apply_special_offers(sku, offer, count)
     if offer.is_a?(Array)
       offer.sort_by { |o| o[:quantity] }.reverse_each do |o|
-        apply_special_offer(sku, offer, count)
+        apply_special_offer(sku, o, count)
       end
     elsif offer.is_a?(Hash)
       apply_special_offer(sku, offer, count)
@@ -72,6 +72,7 @@ class Checkout
 
   def apply_special_offer_price(offer, count)
     while count >= offer[:quantity]
+      binding.pry
       total_price += offer[:offer_price]
       count -= offer[:quantity]
     end
