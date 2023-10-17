@@ -48,7 +48,6 @@ class Checkout
     item_count.each do |sku, count|
       @count = count
       apply_special_offers(sku, price_table[sku][:offer]) if price_table[sku].key?(:offer)
-      binding.pry
       @total_price += @count * price_table[sku][:price]
     end
     @total_price
@@ -87,6 +86,7 @@ class Checkout
     end
   end
 end
+
 
 
 
