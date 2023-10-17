@@ -7,4 +7,3 @@ describe Hello do
         expect(described_class.new.hello("test")).to eq "Hello, #{friend_name}!"
     end
 end
-

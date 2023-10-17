@@ -4,4 +4,3 @@ class Hello
     return "Hello, #{friend_name}!"
   end
 end
-
