@@ -57,11 +57,14 @@ describe Checkout do
     end
   end
 
-  let(:skus) { "AABCDDBBA" }
-  let(:total_price) { 255 }
+  context "with multiple products" do
+    let(:skus) { "AABCDDBBA" }
+    let(:total_price) { 255 }
 
-  it "calculates the total price" do
-    expect(checkout).to eq(total_price)
+    it "calculates the total price" do
+      expect(checkout).to eq(total_price)
+    end
   end
 end
+
 
