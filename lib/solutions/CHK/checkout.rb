@@ -2,6 +2,8 @@
 class Checkout
   VALID_PRODUCTS = "ABCDE"
 
+  attr_accessor :price_table, :item_count, :total_price
+
   def initialize
     @price_table = {
       "A" => {
@@ -27,16 +29,16 @@ class Checkout
   def checkout(skus)
     return -1 unless valid_input?(skus)
 
-    item_count = count_items(skus)
-    calculate_total_price(item_count)
+    set_item_count(skus)
+    calculate_total_price
   end
 
   def valid_input?(skus)
     skus.delete(VALID_PRODUCTS).empty?
   end
 
-  def count_items(skus)
-    item_count = skus.split("").each_with_object(Hash.new(0)) do |sku, hash|
+  def set_item_count(skus)
+    @item_count = skus.split("").each_with_object(Hash.new(0)) do |sku, hash|
       hash[sku] += 1
     end
   end
@@ -54,11 +56,13 @@ class Checkout
           if offer.key?(:offer_price)
             calculate_offer_price_total(offer, count)
           elsif offer.key?(:free_sku)
-
+            while count >= offer[:quantity]
+              @total_price += @price_table[sku][:price] * offer[:quantity]
+              count -= offer[:quantity]
+              item_count[offer[:free_sku]] += 1
+            end
           end
         end
-        
-        
       end
       @total_price += count * @price_table[sku][:price]
     end
@@ -72,3 +76,4 @@ class Checkout
     end
   end
 end
+
