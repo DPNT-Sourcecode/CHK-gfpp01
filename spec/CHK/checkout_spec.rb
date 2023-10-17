@@ -3,39 +3,41 @@ require_solution 'CHK'
 describe Checkout do
   subject(:checkout) { described_class.new.checkout(skus) }
 
-  context "with a single A product" do
-    let(:skus) { "A" }
-    let(:total_price) { 50 }
+  context "when ordering A" do
+    context "with a single A product" do
+      let(:skus) { "A" }
+      let(:total_price) { 50 }
 
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
     end
-  end
 
-  context "with 3 A products" do
-    let(:skus) { "AAA" }
-    let(:total_price) { 130 }
+    context "with 3 A products" do
+      let(:skus) { "AAA" }
+      let(:total_price) { 130 }
 
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
     end
-  end
 
-  context "with 8 A products" do
-    let(:skus) { "AAAAAAAA" }
-    let(:total_price) { 330 }
+    context "with 8 A products" do
+      let(:skus) { "AAAAAAAA" }
+      let(:total_price) { 330 }
 
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
     end
-  end
 
-  context "with 9 A products" do
-    let(:skus) { "AAAAAAAAA" }
-    let(:total_price) { 380 }
+    context "with 9 A products" do
+      let(:skus) { "AAAAAAAAA" }
+      let(:total_price) { 380 }
 
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
     end
   end
 
@@ -156,4 +158,5 @@ describe Checkout do
     end
   end
 end
+
 
