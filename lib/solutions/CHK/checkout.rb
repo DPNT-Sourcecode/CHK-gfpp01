@@ -41,6 +41,7 @@ class Checkout
     @item_count = skus.split("").each_with_object(Hash.new(0)) do |sku, hash|
       hash[sku] += 1
     end
+    @pending_updates = Hash.new(0)
   end
 
   def calculate_total_price
@@ -82,7 +83,8 @@ class Checkout
     while @count >= offer[:quantity]
       @total_price += price_table[sku][:price] * offer[:quantity]
       @count -= offer[:quantity]
-      item_count[offer[:free_sku]] -= 1
+      @pending_updates[offer[:free_sku]] -= 1
     end
   end
 end
+
