@@ -41,112 +41,209 @@ describe Checkout do
     end
   end
 
-  context "with a single B product" do
-    let(:skus) { "B" }
-    let(:total_price) { 30 }
+  context "when ordering B" do
+    context "with a single B product" do
+      let(:skus) { "B" }
+      let(:total_price) { 30 }
 
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with multiple B products" do
+      let(:skus) { "BBB" }
+      let(:total_price) { 75 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
     end
   end
 
-  context "with multiple B products" do
-    let(:skus) { "BBB" }
-    let(:total_price) { 75 }
+  context "when ordering C" do
+    context "with a single C product" do
+      let(:skus) { "C" }
+      let(:total_price) { 20 }
 
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
     end
   end
 
-  context "with a single C product" do
-    let(:skus) { "C" }
-    let(:total_price) { 20 }
+  context "when ordering D" do
+    context "with a single D product" do
+      let(:skus) { "D" }
+      let(:total_price) { 15 }
 
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
     end
   end
 
-  context "with a single D product" do
-    let(:skus) { "D" }
-    let(:total_price) { 15 }
+  context "when ordering E" do
+    context "with a single E product" do
+      let(:skus) { "E" }
+      let(:total_price) { 40 }
 
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with 2 E, and a B, products" do
+      let(:skus) { "EEB" }
+      let(:total_price) { 80 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with 2 E products" do
+      let(:skus) { "EE" }
+      let(:total_price) { 80 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with 3 E products" do
+      let(:skus) { "EEE" }
+      let(:total_price) { 120 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
     end
   end
 
-  context "with a single E product" do
-    let(:skus) { "E" }
-    let(:total_price) { 40 }
+  context "when ordering F" do
+    context "with 1 F products" do
+      let(:skus) { "F" }
+      let(:total_price) { 10 }
 
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with 2 F products" do
+      let(:skus) { "FF" }
+      let(:total_price) { 20 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with 3 F products" do
+      let(:skus) { "FFF" }
+      let(:total_price) { 20 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with 4 F products" do
+      let(:skus) { "FFFF" }
+      let(:total_price) { 30 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
     end
   end
 
-  context "with multiple E products" do
-    let(:skus) { "EEB" }
-    let(:total_price) { 80 }
+  context "when ordering G" do
+    context "with 1 G products" do
+      let(:skus) { "G" }
+      let(:total_price) { 20 }
 
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
     end
   end
 
-  context "with 2 E products" do
-    let(:skus) { "EE" }
-    let(:total_price) { 80 }
-
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
-    end
+  context "when ordering B" do
+    
   end
 
-  context "with 3 E products" do
-    let(:skus) { "EEE" }
-    let(:total_price) { 120 }
-
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
-    end
+  context "when ordering B" do
+    
   end
 
-  context "with 1 F products" do
-    let(:skus) { "F" }
-    let(:total_price) { 10 }
-
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
-    end
+  context "when ordering B" do
+    
   end
 
-  context "with 2 F products" do
-    let(:skus) { "FF" }
-    let(:total_price) { 20 }
-
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
-    end
+  context "when ordering B" do
+    
   end
 
-  context "with 3 F products" do
-    let(:skus) { "FFF" }
-    let(:total_price) { 20 }
-
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
-    end
+  context "when ordering B" do
+    
   end
 
-  context "with 4 F products" do
-    let(:skus) { "FFFF" }
-    let(:total_price) { 30 }
+  context "when ordering B" do
+    
+  end
 
-    it "calculates the total price" do
-      expect(checkout).to eq(total_price)
-    end
+  context "when ordering B" do
+    
+  end
+
+  context "when ordering B" do
+    
+  end
+
+  context "when ordering B" do
+    
+  end
+
+  context "when ordering B" do
+    
+  end
+
+  context "when ordering B" do
+    
+  end
+
+  context "when ordering B" do
+    
+  end
+
+  context "when ordering B" do
+    
+  end
+
+  context "when ordering B" do
+    
+  end
+
+  context "when ordering B" do
+    
+  end
+
+  context "when ordering B" do
+    
+  end
+
+  context "when ordering B" do
+    
+  end
+
+  context "when ordering B" do
+    
+  end
+
+  context "when ordering B" do
+    
   end
 
   context "with multiple products" do
@@ -158,5 +255,3 @@ describe Checkout do
     end
   end
 end
-
-
