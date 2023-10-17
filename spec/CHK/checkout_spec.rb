@@ -292,20 +292,84 @@ describe Checkout do
     end
   end
 
-  context "when ordering B" do
-    
+  context "when ordering O" do
+    context "with 1 product" do
+      let(:skus) { "O" }
+      let(:total_price) { 10 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
   end
 
-  context "when ordering B" do
-    
+  context "when ordering P" do
+    context "with 1 product" do
+      let(:skus) { "P" }
+      let(:total_price) { 50 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with 5 products" do
+      let(:skus) { "P" * 5 }
+      let(:total_price) { 200 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
   end
 
-  context "when ordering B" do
-    
+  context "when ordering Q" do
+    context "with 1 product" do
+      let(:skus) { "Q" }
+      let(:total_price) { 30 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with 3 products" do
+      let(:skus) { "Q" * 3 }
+      let(:total_price) { 80 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
   end
 
-  context "when ordering B" do
-    
+  context "when ordering R" do
+    context "with 1 product" do
+      let(:skus) { "R" }
+      let(:total_price) { 50 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with 3 products" do
+      let(:skus) { "R" * 3 }
+      let(:total_price) { 150 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with 3, and a Q product" do
+      let(:skus) { "RRRQ" }
+      let(:total_price) { 150 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
   end
 
   context "when ordering B" do
@@ -349,5 +413,6 @@ describe Checkout do
     end
   end
 end
+
 
 
