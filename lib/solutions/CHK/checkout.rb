@@ -47,11 +47,17 @@ class Checkout
       if @price_table[sku].key?(:offer)
         offer = @price_table[sku][:offer]
         if offer.is_a?(Array)
-
+          offer.sort_by { |o| o[:quantity] }.reverse_each do |o|
+            calculate_offer_price_total(offer, count)
+          end
         elsif offer.is_a?(Hash)
+          if offer.key?(:offer_price)
+            calculate_offer_price_total(offer, count)
+          elsif offer.key?(:free_sku)
 
+          end
         end
-
+        
         
       end
       @total_price += count * @price_table[sku][:price]
@@ -66,5 +72,6 @@ class Checkout
     end
   end
 end
+
 
 
