@@ -15,7 +15,32 @@ class Checkout
       "D" => {:price => 15},
       "E" => {:price => 40, :offer => {:quantity => 2, :free_sku => "B"}},
       "F" => {:price => 10, :offer => {:quantity => 3, :free_sku => "F"}},
-
+      "G" => {:price => 20},
+      "H" => {:price => 10, :offer => [
+        {:quantity => 5, :offer_price => 45},
+        {:quantity => 10, :offer_price => 80}
+      ]},
+      "I" => {:price => 35},
+      "J" => {:price => 60},
+      "K" => {:price => 80, :offer => {:quantity => 2, :offer_price => 150}},
+      "L" => {:price => 90},
+      "M" => {:price => 15},
+      "N" => {:price => 40, :offer => {:quantity => 3, :free_sku => "M"}},
+      "O" => {:price => 10},
+      "P" => {:price => 50, :offer => {:quantity => 5, :offer_price => 200}},
+      "Q" => {:price => 30, :offer => {:quantity => 3, :offer_price => 80}},
+      "R" => {:price => 50, :offer => {:quantity => 3, :free_sku => "Q"}},
+      "S" => {:price => 30},
+      "T" => {:price => 20},
+      "U" => {:price => 40, :offer => {:quantity => 4, :offer_price => "U"}},
+      "V" => {:price => 50, :offer => [
+        {:quantity => 2, :offer_price => 90},
+        {:quantity => 3, :offer_price => 130}
+      ]},
+      "W" => {:price => 20},
+      "X" => {:price => 90},
+      "Y" => {:price => 10},
+      "Z" => {:price => 50}
     }
     @total_price = -1
   end
@@ -108,6 +133,7 @@ class Checkout
     end
   end
 end
+
 
 
 
