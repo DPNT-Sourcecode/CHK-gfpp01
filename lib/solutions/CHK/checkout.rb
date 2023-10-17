@@ -10,14 +10,31 @@ class Checkout
   end
 
   def checkout(skus)
-    # Check for illegal input
+    return -1 unless valid_input?(skus)
 
+    item_count = count_items(skus)
+    calculate_total_price(item_count)
+  end
+
+  def count_items(skus)
     item_count = skus.split("").each_with_object(Hahs.new(0)) do |sku, hash|
       hash[sku] += 1
     end
-
-
   end
 
+  def calculate_total_price(item_count)
+    total_price = 0
+    item_count.each do |sku, count|
+      if @price_table[sku].key?(:offer)
+        offer = @price_table[sku][:offer]
+        while count >= offer[:quantity]
+          total_price += offer[:offer_price]
+          count -= offer[:quantity]
+        end
+      end
+      total_price += count * @price_table[sku][:price]
+    end
+  end
 end
+
 
