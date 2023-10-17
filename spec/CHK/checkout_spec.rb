@@ -170,16 +170,55 @@ describe Checkout do
     end
   end
 
-  context "when ordering B" do
-    
+  context "when ordering H" do
+    context "with 1 H products" do
+      let(:skus) { "H" }
+      let(:total_price) { 10 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with 5 H products" do
+      let(:skus) { "H" * 5 }
+      let(:total_price) { 45 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with 10 H products" do
+      let(:skus) { "H" * 10 }
+      let(:total_price) { 80 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
   end
 
-  context "when ordering B" do
-    
+  context "when ordering I" do
+    context "with 1 product" do
+      let(:skus) { "I" }
+      let(:total_price) { 35 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
   end
 
-  context "when ordering B" do
-    
+  context "when ordering J" do
+    context "with 1 product" do
+      let(:skus) { "J" }
+      let(:total_price) { 60 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
   end
 
   context "when ordering B" do
@@ -255,3 +294,4 @@ describe Checkout do
     end
   end
 end
+
