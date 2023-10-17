@@ -1,13 +1,26 @@
 # noinspection RubyUnusedLocalVariable
 class Checkout
-  VALID_PRODUCTS = "ABCD"
+  VALID_PRODUCTS = "ABCDE"
 
   def initialize
     @price_table = {
-      "A" => {:price => 50, :offer => {:quantity => 3, :offer_price => 130}},
-      "B" => {:price => 30, :offer => {:quantity => 2, :offer_price => 45}},
+      "A" => {
+        :price => 50,
+        :offer => [
+          {:quantity => 3, :offer_price => 130},
+          {:quantity => 5, :offer_price => 200}
+        ]
+      },
+      "B" => {
+        :price => 30,
+        :offer => {:quantity => 2, :offer_price => 45}
+      },
       "C" => {:price => 20},
-      "D" => {:price => 15}
+      "D" => {:price => 15},
+      "E" => {
+        :price => 40,
+        :offer => {:quantity => 2, :free_sku => "B"}
+      }
     }
   end
 
@@ -43,3 +56,4 @@ class Checkout
     total_price
   end
 end
+
