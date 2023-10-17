@@ -42,18 +42,29 @@ class Checkout
   end
 
   def calculate_total_price(item_count)
-    total_price = 0
+    @total_price = 0
     item_count.each do |sku, count|
       if @price_table[sku].key?(:offer)
         offer = @price_table[sku][:offer]
-        while count >= offer[:quantity]
-          total_price += offer[:offer_price]
-          count -= offer[:quantity]
+        if offer.is_a?(Array)
+
+        elsif offer.is_a?(Hash)
+
         end
+
+        
       end
-      total_price += count * @price_table[sku][:price]
+      @total_price += count * @price_table[sku][:price]
     end
-    total_price
+    @total_price
+  end
+
+  def calculate_offer_price_total(offer, count)
+    while count >= offer[:quantity]
+      @total_price += offer[:offer_price]
+      count -= offer[:quantity]
+    end
   end
 end
+
 
