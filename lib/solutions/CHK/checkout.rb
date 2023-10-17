@@ -32,7 +32,7 @@ class Checkout
       "R" => {:price => 50, :offer => {:quantity => 3, :free_sku => "Q"}},
       "S" => {:price => 30},
       "T" => {:price => 20},
-      "U" => {:price => 40, :offer => {:quantity => 4, :offer_price => "U"}},
+      "U" => {:price => 40, :offer => {:quantity => 4, :free_sku => "U"}},
       "V" => {:price => 50, :offer => [
         {:quantity => 2, :offer_price => 90},
         {:quantity => 3, :offer_price => 130}
@@ -133,3 +133,4 @@ class Checkout
     end
   end
 end
+
