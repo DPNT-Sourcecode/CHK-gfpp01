@@ -1,5 +1,7 @@
 # noinspection RubyUnusedLocalVariable
 class Checkout
+  VALID_PRODUCTS = "ABCD"
+
   def initialize
     @price_table = {
       "A" => {:price => 50, :offer => {:quantity => 3, :offer_price => 130}},
@@ -14,6 +16,10 @@ class Checkout
 
     item_count = count_items(skus)
     calculate_total_price(item_count)
+  end
+
+  def valid_input?(skus)
+    skus.delete(VALID_PRODUCTS).empty?
   end
 
   def count_items(skus)
@@ -34,7 +40,9 @@ class Checkout
       end
       total_price += count * @price_table[sku][:price]
     end
+    total_price
   end
 end
+
 
 
