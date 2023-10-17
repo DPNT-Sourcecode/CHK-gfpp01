@@ -1,6 +1,6 @@
 # noinspection RubyUnusedLocalVariable
 class Checkout
-  VALID_PRODUCTS = "ABCDE"
+  VALID_PRODUCTS = "ABCDEF"
 
   attr_reader :price_table
 
@@ -13,19 +13,23 @@ class Checkout
       "B" => {:price => 30, :offer => {:quantity => 2, :offer_price => 45}},
       "C" => {:price => 20},
       "D" => {:price => 15},
-      "E" => {:price => 40, :offer => {:quantity => 2, :free_sku => "B"}}
+      "E" => {:price => 40, :offer => {:quantity => 2, :free_sku => "B"}},
+      "F" => {:price => 10, :offer => {:quantity => 2, :free_sku => "F"}}
     }
     @total_price = -1
   end
 
   def checkout(skus)
-    return @total_price unless valid_input?(skus)
-
-    @total_price = 0
-    set_item_count(skus)
-    apply_free_sku_special_offers(skus)
-    calculate_total_price
+    if valid_input?(skus)
+      @total_price = 0
+      set_item_count(skus)
+      apply_free_sku_special_offers(skus)
+      calculate_total_price
+    end
+    @total_price
   end
+
+  private
 
   def valid_input?(skus)
     skus.delete(VALID_PRODUCTS).empty?
@@ -103,3 +107,4 @@ class Checkout
     end
   end
 end
+
