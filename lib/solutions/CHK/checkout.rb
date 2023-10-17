@@ -23,7 +23,7 @@ class Checkout
   end
 
   def count_items(skus)
-    item_count = skus.split("").each_with_object(Hahs.new(0)) do |sku, hash|
+    item_count = skus.split("").each_with_object(Hash.new(0)) do |sku, hash|
       hash[sku] += 1
     end
   end
@@ -43,6 +43,3 @@ class Checkout
     total_price
   end
 end
-
-
-
