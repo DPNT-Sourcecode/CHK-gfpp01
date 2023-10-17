@@ -43,30 +43,31 @@ class Checkout
     end
   end
 
-  def calculate_total_price(item_count)
-    @total_price = 0
+  def calculate_total_price
+    total_price = 0
     item_count.each do |sku, count|
-      if @price_table[sku].key?(:offer)
-        offer = @price_table[sku][:offer]
-        if offer.is_a?(Array)
-          offer.sort_by { |o| o[:quantity] }.reverse_each do |o|
-            calculate_offer_price_total(offer, count)
-          end
-        elsif offer.is_a?(Hash)
-          if offer.key?(:offer_price)
-            calculate_offer_price_total(offer, count)
-          elsif offer.key?(:free_sku)
-            while count >= offer[:quantity]
-              @total_price += @price_table[sku][:price] * offer[:quantity]
-              count -= offer[:quantity]
-              item_count[offer[:free_sku]] += 1
-            end
-          end
+      apply_special_offers(@price_table[sku][:offer], count) if price_table[sku].key?(:offer)
+      total_price += count * @price_table[sku][:price]
+    end
+    total_price
+  end
+
+  def apply_special_offers(offer, count)
+    if offer.is_a?(Array)
+      offer.sort_by { |o| o[:quantity] }.reverse_each do |o|
+        calculate_offer_price_total(offer, count)
+      end
+    elsif offer.is_a?(Hash)
+      if offer.key?(:offer_price)
+        calculate_offer_price_total(offer, count)
+      elsif offer.key?(:free_sku)
+        while count >= offer[:quantity]
+          @total_price += @price_table[sku][:price] * offer[:quantity]
+          count -= offer[:quantity]
+          item_count[offer[:free_sku]] += 1
         end
       end
-      @total_price += count * @price_table[sku][:price]
     end
-    @total_price
   end
 
   def calculate_offer_price_total(offer, count)
@@ -76,4 +77,5 @@ class Checkout
     end
   end
 end
+
 
