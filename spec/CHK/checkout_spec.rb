@@ -111,12 +111,49 @@ describe Checkout do
     end
   end
 
+  context "with 1 F products" do
+    let(:skus) { "F" }
+    let(:total_price) { 10 }
+
+    it "calculates the total price" do
+      expect(checkout).to eq(total_price)
+    end
+  end
+
+  context "with 2 F products" do
+    let(:skus) { "FF" }
+    let(:total_price) { 20 }
+
+    it "calculates the total price" do
+      expect(checkout).to eq(total_price)
+    end
+  end
+
+  context "with 3 F products" do
+    let(:skus) { "FFF" }
+    let(:total_price) { 20 }
+
+    it "calculates the total price" do
+      expect(checkout).to eq(total_price)
+    end
+  end
+
+  context "with 4 F products" do
+    let(:skus) { "FFFF" }
+    let(:total_price) { 30 }
+
+    it "calculates the total price" do
+      expect(checkout).to eq(total_price)
+    end
+  end
+
   context "with multiple products" do
-    let(:skus) { "AAABBBCDDEEE" }
-    let(:total_price) { 345 }
+    let(:skus) { "AAABBBCDDEEEFFFF" }
+    let(:total_price) { 375 }
 
     it "calculates the total price" do
       expect(checkout).to eq(total_price)
     end
   end
 end
+

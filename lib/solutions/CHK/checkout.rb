@@ -14,7 +14,7 @@ class Checkout
       "C" => {:price => 20},
       "D" => {:price => 15},
       "E" => {:price => 40, :offer => {:quantity => 2, :free_sku => "B"}},
-      "F" => {:price => 10, :offer => {:quantity => 2, :free_sku => "F"}}
+      "F" => {:price => 10, :offer => {:quantity => 3, :free_sku => "F"}}
     }
     @total_price = -1
   end
@@ -107,4 +107,5 @@ class Checkout
     end
   end
 end
+
 
