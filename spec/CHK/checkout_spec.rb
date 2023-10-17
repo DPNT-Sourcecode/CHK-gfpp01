@@ -221,20 +221,75 @@ describe Checkout do
     end
   end
 
-  context "when ordering B" do
-    
+  context "when ordering K" do
+    context "with 1 product" do
+      let(:skus) { "K" }
+      let(:total_price) { 80 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with 1 product" do
+      let(:skus) { "K" * 2 }
+      let(:total_price) { 150 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
   end
 
-  context "when ordering B" do
-    
+  context "when ordering L" do
+    context "with 1 product" do
+      let(:skus) { "L" }
+      let(:total_price) { 90 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
   end
 
-  context "when ordering B" do
-    
+  context "when ordering M" do
+    context "with 1 product" do
+      let(:skus) { "M" }
+      let(:total_price) { 15 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
   end
 
-  context "when ordering B" do
-    
+  context "when ordering N" do
+    context "with 1 product" do
+      let(:skus) { "N" }
+      let(:total_price) { 40 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with 3 products" do
+      let(:skus) { "N" * 3 }
+      let(:total_price) { 120 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
+
+    context "with 3, and an M product" do
+      let(:skus) { "NNNM" }
+      let(:total_price) { 120 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
   end
 
   context "when ordering B" do
@@ -294,4 +349,5 @@ describe Checkout do
     end
   end
 end
+
 
