@@ -4,41 +4,9 @@ class Checkout
 
   def initialize
     @price_table = {
-      "A" => {:price => 50, :offer => [
-          {:quantity => 3, :offer_price => 130},
-          {:quantity => 5, :offer_price => 200}
-      ]},
-      "B" => {:price => 30, :offer => {:quantity => 2, :offer_price => 45}},
-      "C" => {:price => 20},
-      "D" => {:price => 15},
-      "E" => {:price => 40, :offer => {:quantity => 2, :free_sku => "B"}},
-      "F" => {:price => 10, :offer => {:quantity => 3, :free_sku => "F"}},
-      "G" => {:price => 20},
-      "H" => {:price => 10, :offer => [
-        {:quantity => 5, :offer_price => 45},
-        {:quantity => 10, :offer_price => 80}
-      ]},
-      "I" => {:price => 35},
-      "J" => {:price => 60},
-      "K" => {:price => 80, :offer => {:quantity => 2, :offer_price => 150}},
-      "L" => {:price => 90},
-      "M" => {:price => 15},
-      "N" => {:price => 40, :offer => {:quantity => 3, :free_sku => "M"}},
-      "O" => {:price => 10},
-      "P" => {:price => 50, :offer => {:quantity => 5, :offer_price => 200}},
-      "Q" => {:price => 30, :offer => {:quantity => 3, :offer_price => 80}},
-      "R" => {:price => 50, :offer => {:quantity => 3, :free_sku => "Q"}},
-      "S" => {:price => 30},
-      "T" => {:price => 20},
-      "U" => {:price => 40, :offer => {:quantity => 4, :free_sku => "U"}},
-      "V" => {:price => 50, :offer => [
-        {:quantity => 2, :offer_price => 90},
-        {:quantity => 3, :offer_price => 130}
-      ]},
-      "W" => {:price => 20},
-      "X" => {:price => 90},
-      "Y" => {:price => 10},
-      "Z" => {:price => 50}
+      "A" => 50, "B" => 30, "C" => 20, "D" => 15, "E" => 40, "F" => 10, "G" => 20, "H" => 10, "I" => 35, "J" => 60,
+      "K" => 70, "L" => 90, "M" => 15, "N" => 40, "O" => 10, "P" => 50, "Q" => 30, "R" => 50, "S" => 20, "T" => 20,
+      "U" => 40, "V" => 50, "W" => 20, "X" => 17, "Y" => 20, "Z" => 21
     }
     @sku_offer_table = {
       "E" => [{:quantity => 2, :free_sku => "B"}],
@@ -51,7 +19,13 @@ class Checkout
 
     }
     @price_offer_table = {
-
+      "A" => [{:quantity => 3, :offer_price => 130}, {:quantity => 5, :offer_price => 200}],
+      "B" => [{:quantity => 2, :offer_price => 45}],
+      "H" => [{:quantity => 5, :offer_price => 45}, {:quantity => 10, :offer_price => 80}],
+      "K" => [{:quantity => 2, :offer_price => 120}],
+      "P" => [{:quantity => 5, :offer_price => 200}],
+      "Q" => [{:quantity => 3, :offer_price => 80}],
+      "V" => [{:quantity => 2, :offer_price => 90}, {:quantity => 3, :offer_price => 130}],
     }
     @total_price = -1
   end
@@ -146,4 +120,5 @@ class Checkout
     end
   end
 end
+
 
