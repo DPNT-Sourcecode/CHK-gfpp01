@@ -35,6 +35,7 @@ class Checkout
       @total_price = 0
       update_initial_item_count(skus)
       apply_free_sku_special_offers
+      apply_group_discount_offers
       calculate_total_price
     end
     @total_price
@@ -84,6 +85,24 @@ class Checkout
     end
   end
 
+  def apply_group_discount_offers
+    group_offer_table.each do |group, offer|
+      group_count = group.each_char.sum { |sku| @item_count[sku] }
+      next unless group_count >= offer[:quantity]
+
+      # Add the offer price to the total price
+      offer_count = group_count / offer[:quantity]
+      @total_price += offer_count * offer[:offer_price]
+      # Remove the offer quantity from the item count
+      number_of_products = offer_count * offer[:quantity]
+      update_item_count_after_group_discount(group, number_of_products)
+    end
+  end
+
+  def update_initial_item_count_after_group_discount
+
+  end
+
   def calculate_total_price
     @item_count.each do |sku, count|
       @count = count
@@ -101,6 +120,7 @@ class Checkout
     end
   end
 end
+
 
 
 
