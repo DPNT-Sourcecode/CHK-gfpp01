@@ -99,8 +99,16 @@ class Checkout
     end
   end
 
-  def update_initial_item_count_after_group_discount
-
+  def update_item_count_after_group_discount(group, number_of_products)
+    group.each_char do |sku|
+      sku_count = @item_count[sku]
+      if sku_count >= number_of_products
+        @item_count[sku] -= number_of_products
+      else
+        @item_count[sku] = 0
+        number_of_products -= sku_count
+      end
+    end
   end
 
   def calculate_total_price
@@ -120,10 +128,3 @@ class Checkout
     end
   end
 end
-
-
-
-
-
-
-

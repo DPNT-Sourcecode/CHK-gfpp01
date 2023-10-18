@@ -505,6 +505,15 @@ describe Checkout do
         expect(checkout).to eq(total_price)
       end
     end
+
+    context "with ZYTSX" do
+      let(:skus) { "ZYTSXZ" }
+      let(:total_price) { 45 + 17 }
+
+      it "calculates the total price" do
+        expect(checkout).to eq(total_price)
+      end
+    end
   end
 
   context "with multiple products" do
@@ -516,5 +525,3 @@ describe Checkout do
     end
   end
 end
-
-
