@@ -42,7 +42,7 @@ class Checkout
 
   private
 
-  attr_reader :price_table
+  attr_reader :price_table, :sku_offer_table, :group_offer_table, :price_offer_table
 
   def valid_input?(skus)
     skus.delete(VALID_PRODUCTS).empty?
@@ -57,19 +57,15 @@ class Checkout
   def calculate_total_price
     @item_count.each do |sku, count|
       @count = count
-      apply_special_offer_prices(price_table[sku][:offer]) if price_table[sku].key?(:offer)
+      apply_special_offer_prices(price_offer_table[sku]) if price_table.key?(sku)
       @total_price += @count * price_table[sku][:price]
     end
     @total_price
   end
 
   def apply_special_offer_prices(offer)
-    if offer.is_a?(Array)
-      offer.select { |o| o.key?(:offer_price) }.sort_by { |o| o[:quantity] }.reverse_each do |o|
-        apply_special_offer_price(o)
-      end
-    elsif offer.is_a?(Hash) && offer.key?(:offer_price)
-      apply_special_offer_price(offer)
+    offer.sort_by { |o| o[:quantity] }.reverse_each do |o|
+      apply_special_offer_price(o)
     end
   end
 
@@ -84,25 +80,17 @@ class Checkout
     @item_count_updates = Hash.new(0)
     @item_count.each do |sku, count|
       @count = count
-      apply_free_sku_special_offer(price_table[sku][:offer]) if price_table[sku].key?(:offer)
+      apply_free_sku_special_offer(sku_offer_table[sku]) if sku_offer_table.key?(sku)
     end
     update_item_count
   end
 
   def apply_free_sku_special_offer(offer)
-    if offer.is_a?(Hash) && offer.key?(:free_sku)
-      update_item_count_updates(offer)
-    elsif offer.is_a?(Array)
-      offer.select { |o| o.key?(:free_sku) }.sort_by { |o| o[:quantity] }.reverse_each do |o|
-        update_item_count_updates(o)
+    offer.sort_by { |o| o[:quantity] }.reverse_each do |o|
+      while @count >= o[:quantity]
+        @count -= o[:quantity]
+        @item_count_updates[o[:free_sku]] -= 1
       end
-    end
-  end
-
-  def update_item_count_updates(offer)
-    while @count >= offer[:quantity]
-      @count -= offer[:quantity]
-      @item_count_updates[offer[:free_sku]] -= 1
     end
   end
 
@@ -118,6 +106,7 @@ class Checkout
     end
   end
 end
+
 
 
 
