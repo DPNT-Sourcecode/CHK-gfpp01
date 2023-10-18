@@ -498,7 +498,7 @@ describe Checkout do
 
   context "when ordering group discount offer products" do
     context "with ZYTSX" do
-      let(:skus) { "ZYTSX" }
+      let(:skus) { "ZYT" }
       let(:total_price) { 45 }
 
       it "calculates the total price" do
@@ -506,9 +506,9 @@ describe Checkout do
       end
     end
 
-    context "with ZYTSX" do
-      let(:skus) { "ZYTSXZ" }
-      let(:total_price) { 45 + 17 }
+    context "with ZZZ" do
+      let(:skus) { "ZZZ" }
+      let(:total_price) { 45 }
 
       it "calculates the total price" do
         expect(checkout).to eq(total_price)
@@ -525,3 +525,4 @@ describe Checkout do
     end
   end
 end
+

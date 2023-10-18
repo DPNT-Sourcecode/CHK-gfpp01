@@ -95,15 +95,13 @@ class Checkout
       @total_price += offer_count * offer[:offer_price]
       # Remove the offer quantity from the item count
       number_of_products = offer_count * offer[:quantity]
-      # binding.pry
       update_item_count_after_group_discount(group, number_of_products)
-      # binding.pry
     end
   end
 
   def update_item_count_after_group_discount(group, number_of_products)
     group.each_char do |sku|
-      next unless @item_count[sku].positive?
+      next unless @item_count[sku].positive? && number_of_products.positive?
 
       if @item_count[sku] >= number_of_products
         @item_count[sku] -= number_of_products
@@ -132,6 +130,7 @@ class Checkout
     end
   end
 end
+
 
 
 
