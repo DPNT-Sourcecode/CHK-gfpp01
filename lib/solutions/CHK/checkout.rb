@@ -111,6 +111,7 @@ class Checkout
         @item_count[sku] = 0
         number_of_products -= sku_count
       end
+      break if number_of_products.zero?
     end
   end
 
@@ -131,4 +132,5 @@ class Checkout
     end
   end
 end
+
 
