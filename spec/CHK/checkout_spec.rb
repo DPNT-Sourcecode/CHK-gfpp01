@@ -224,7 +224,7 @@ describe Checkout do
   context "when ordering K" do
     context "with 1 product" do
       let(:skus) { "K" }
-      let(:total_price) { 80 }
+      let(:total_price) { 70 }
 
       it "calculates the total price" do
         expect(checkout).to eq(total_price)
@@ -233,7 +233,7 @@ describe Checkout do
 
     context "with 1 product" do
       let(:skus) { "K" * 2 }
-      let(:total_price) { 150 }
+      let(:total_price) { 120 }
 
       it "calculates the total price" do
         expect(checkout).to eq(total_price)
@@ -375,7 +375,7 @@ describe Checkout do
   context "when ordering S" do
     context "with 1 product" do
       let(:skus) { "S" }
-      let(:total_price) { 30 }
+      let(:total_price) { 20 }
 
       it "calculates the total price" do
         expect(checkout).to eq(total_price)
@@ -466,7 +466,7 @@ describe Checkout do
   context "when ordering X" do
     context "with 1 product" do
       let(:skus) { "X" }
-      let(:total_price) { 90 }
+      let(:total_price) { 17 }
 
       it "calculates the total price" do
         expect(checkout).to eq(total_price)
@@ -477,7 +477,7 @@ describe Checkout do
   context "when ordering Y" do
     context "with 1 product" do
       let(:skus) { "Y" }
-      let(:total_price) { 10 }
+      let(:total_price) { 20 }
 
       it "calculates the total price" do
         expect(checkout).to eq(total_price)
@@ -488,7 +488,7 @@ describe Checkout do
   context "when ordering Z" do
     context "with 1 product" do
       let(:skus) { "Z" }
-      let(:total_price) { 50 }
+      let(:total_price) { 21 }
 
       it "calculates the total price" do
         expect(checkout).to eq(total_price)
@@ -505,3 +505,4 @@ describe Checkout do
     end
   end
 end
+
