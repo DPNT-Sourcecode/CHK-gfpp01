@@ -101,7 +101,7 @@ class Checkout
 
   def update_item_count_after_group_discount(group, number_of_products)
     group.each_char do |sku|
-      next unless @item_count[sku].positive? && number_of_products.positive?
+      next unless @item_count[sku].positive?
 
       if @item_count[sku] >= number_of_products
         @item_count[sku] -= number_of_products
@@ -130,6 +130,7 @@ class Checkout
     end
   end
 end
+
 
 
 
