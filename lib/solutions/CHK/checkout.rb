@@ -2,8 +2,6 @@
 class Checkout
   VALID_PRODUCTS = ("A".."Z").to_a.join
 
-  attr_reader :price_table
-
   def initialize
     @price_table = {
       "A" => {:price => 50, :offer => [
@@ -42,6 +40,19 @@ class Checkout
       "Y" => {:price => 10},
       "Z" => {:price => 50}
     }
+    @sku_offer_table = {
+      "E" => [{:quantity => 2, :free_sku => "B"}],
+      "F" => [{:quantity => 3, :free_sku => "F"}],
+      "N" => [{:quantity => 3, :free_sku => "M"}],
+      "R" => [{:quantity => 3, :free_sku => "Q"}],
+      "U" => [{:quantity => 4, :free_sku => "U"}]
+    }
+    @group_offer_table = {
+
+    }
+    @price_offer_table = {
+
+    }
     @total_price = -1
   end
 
@@ -56,6 +67,8 @@ class Checkout
   end
 
   private
+
+  attr_reader :price_table
 
   def valid_input?(skus)
     skus.delete(VALID_PRODUCTS).empty?
@@ -133,3 +146,4 @@ class Checkout
     end
   end
 end
+
